@@ -5,6 +5,7 @@ import {
 import {
   pahlawan
 } from '../hero';
+import {HEROES} from '../fake-heroes';
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',
@@ -16,6 +17,14 @@ export class HeroesComponent implements OnInit {
     name: "biljo",
     gender: "genderless"
   };
+  heroes=HEROES;
+  
+  selectedHero:pahlawan;
+
+  onSelect(hero:pahlawan):void{
+    this.selectedHero=hero;
+  }
+  
   constructor() {}
 
   ngOnInit() {}
