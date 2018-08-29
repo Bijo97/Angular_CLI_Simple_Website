@@ -1,3 +1,20 @@
-<p>
-  departments works!
-</p>
+<h1>
+    Departments works too!
+    <!-- of course they do too -->
+  </h1>
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>Name</th>  
+    </thead>
+  
+    <tr *ngFor="let dept of depts">
+      <td>
+        {{dept.id}}
+      </td>
+      <td>{{dept.dept_name}} </td>
+    </tr>
+  
+  
+  </table>
+  

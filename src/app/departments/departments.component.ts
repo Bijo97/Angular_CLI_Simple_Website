@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {departments,department} from '../department';
 
 @Component({
   selector: 'app-departments',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./departments.component.css']
 })
 export class DepartmentsComponent implements OnInit {
-
+  depts=departments;
   constructor() { }
 
   ngOnInit() {
