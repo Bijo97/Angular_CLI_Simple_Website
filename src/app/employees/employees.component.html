@@ -1,3 +1,23 @@
-<p>
+<h1>
   employees works!
-</p>
+  <!-- of course they do -->
+</h1>
+<table>
+
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Address</th>
+
+  </thead>
+
+  <tr *ngFor="let emp of employeesGroup">
+    <td>
+      {{emp.id}}
+    </td>
+    <td>{{emp.emp_name}} </td>
+    <td> {{emp.emp_address}}</td>
+  </tr>
+
+
+</table>
