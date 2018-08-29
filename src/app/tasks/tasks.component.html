@@ -1,3 +1,23 @@
-<p>
-  tasks works!
-</p>
+<h1>
+    tasks need to be worked!
+    <!-- of course they do -->
+  </h1>
+  <table>
+    <thead>
+      <th>ID</th>
+      <th>Task</th>
+      <th>Priority</th>
+  
+    </thead>
+  
+    <tr *ngFor="let tsk of tugas">
+      <td>
+        {{tsk.id}}
+      </td>
+      <td>{{tsk.name}} </td>
+      <td> {{tsk.priority}}</td>
+    </tr>
+  
+  
+  </table>
+  
