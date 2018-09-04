@@ -4,7 +4,7 @@ export class employee{
     emp_address:string;
 };
 export const employees:employee[]=[
-    {id:1,emp_name:'biljo',emp_address:'hell'},
-    {id:2,emp_name:'biljo too',emp_address:'deeper hell'},
-    {id:3,emp_name:'hafizh',emp_address:'eindhoven'}
+    {id:1,emp_name:'Billy',emp_address:'Pioenroosstraat'},
+    {id:2,emp_name:'Andy',emp_address:'Pisanostraat'},
+    {id:3,emp_name:'Harry',emp_address:'Hemelrijken'}
 ];

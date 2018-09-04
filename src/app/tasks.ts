@@ -4,7 +4,7 @@ export class task{
     priority:string;
 };
 export const tasks:task[]=[
-    {id:1,name:'sending biljo to hell',priority:'Number one'},
-    {id:2,name:'Finish this task',priority:'Kinda high'},
-    {id:3,name:'Finish other task',priority:'Below kinda high'}
+    {id:1,name:'Develop Software',priority:'High'},
+    {id:2,name:'Make Treasury Report',priority:'Medium'},
+    {id:3,name:'Operate Machines',priority:'Low'}
 ];
