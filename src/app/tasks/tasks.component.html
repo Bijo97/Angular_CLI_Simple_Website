@@ -1,23 +1,35 @@
 <h1>
-    Tasks need to be worked!
-    <!-- of course they do -->
-  </h1>
-  <table class="table">
-    <thead>
-      <th>ID</th>
-      <th>Task</th>
-      <th>Priority</th>
-  
-    </thead>
-  
-    <tr *ngFor="let tsk of tugas">
-      <td>
-        {{tsk.id}}
-      </td>
-      <td>{{tsk.name}} </td>
-      <td> {{tsk.priority}}</td>
-    </tr>
-  
-  
-  </table>
-  
+  Tasks need to be worked!
+  <!-- of course they do -->
+</h1>
+
+<table class="table">
+  <thead>
+    <th>ID</th>
+    <th>Task</th>
+    <th>Priority</th>
+  </thead>
+
+  <tr *ngFor="let tsk of tugas">
+    <td>
+      {{tsk.id}}
+    </td>
+    <td>{{tsk.name}} </td>
+    <td> {{tsk.priority}}</td>
+  </tr>
+</table>
+
+<ngb-tabset>
+  <ngb-tab>
+    <ng-template ngbTabTitle>Create</ng-template>
+    <ng-template ngbTabContent>
+        <input class="form-control" [(ngModel)]="newTaskName" id="newTaskName" placeholder="name">
+        <!-- <input  #newTask  placeholder="Priority"> -->
+        <select class="form-control" id="priority" [(ngModel)]="newPriority" name="newPriority">
+          <option *ngFor="let prio of priority" [value]="prio"   >{{prio}}</option>
+        </select>
+        <button class="button" (click)="addTask()">Add</button>
+        
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
