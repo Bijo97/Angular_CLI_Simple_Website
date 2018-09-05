@@ -5,7 +5,8 @@
   <table>
     <thead>
       <th>ID</th>
-      <th>Name</th>  
+      <th>Name</th> 
+      <th>Action</th> 
     </thead>
   
     <tr *ngFor="let dept of depts">
@@ -13,8 +14,32 @@
         {{dept.id}}
       </td>
       <td>{{dept.dept_name}} </td>
+      <button class="btn btn-warning" (click)="show(dept)">Edit</button>
+      <button class="btn btn-danger" (click)="delete(dept.id)">Delete</button>
     </tr>
-  
-  
   </table>
-  
+
+  <hr>
+
+  <div class="container">
+    <h3>Add New Department</h3>
+    <form>
+      <div class="form-group">
+        <input type="text" class="form-control" id="dept_name" name="dept_name" placeholder="Department Name" [(ngModel)]="dept_name">
+      </div>
+      <button type="button" class="btn btn-outline-success" (click)="insert()">Submit</button>
+    </form>
+  </div>
+
+  <div *ngIf="selectedDept">
+  <h2>Update Data</h2>
+    <div>
+      <label>
+        <div class="form-group">
+          Name:
+          <input [(ngModel)]="selectedDept.name" placeholder="name">
+        </div>
+        <button type="button" class="btn btn-outline-warning" (click)="update(selectedDept.id)">Update</button>
+      </label>
+    </div>
+  </div>
