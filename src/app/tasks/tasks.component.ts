@@ -18,8 +18,13 @@ export class TasksComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
 
-  newTaskName;
+  newTaskName;//for create
+  selectedTask;//for update
   newPriority;
+
+  onSelect(oldTask:task){
+    this.selectedTask=oldTask;
+  }
   addTask() {
     let newId = this.tugas.length + 1;
     let newTask: task = {
@@ -28,6 +33,9 @@ export class TasksComponent implements OnInit {
       priority: this.newPriority
     };
     this.tugas.push(newTask);
+  }
+  deleteTask(thisTask:task){
+    this.tugas.splice(thisTask.id-1,1);
   }
 
 }
