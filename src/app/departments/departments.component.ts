@@ -11,14 +11,21 @@ export class DepartmentsComponent implements OnInit {
   depts=departments;
   dept_name = null;
   selectedDept: department;
+<<<<<<< HEAD
   i: number;
+=======
+>>>>>>> 91c5516e7106124ada1b9d2ee860a80cdc67534a
 
   constructor() { }
 
   ngOnInit() {
   }
 
+<<<<<<< HEAD
   insert():void{
+=======
+  insert(){
+>>>>>>> 91c5516e7106124ada1b9d2ee860a80cdc67534a
   	let count = this.depts.length + 1;
   	let dept: department = {
   		id: count,
@@ -27,6 +34,7 @@ export class DepartmentsComponent implements OnInit {
   	this.depts.push(dept);
   }
 
+<<<<<<< HEAD
   show(dept:department, i:number):void{
     this.selectedDept = dept;
     this.i = i;
@@ -41,5 +49,9 @@ export class DepartmentsComponent implements OnInit {
   	if (index != -1){
   		this.depts.splice(index, 1);
   	}
+=======
+  show(dept:department):void{
+    this.selectedDept=dept;
+>>>>>>> 91c5516e7106124ada1b9d2ee860a80cdc67534a
   }
 }
