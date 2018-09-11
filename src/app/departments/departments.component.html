@@ -14,15 +14,10 @@
         {{dept.id}}
       </td>
       <td>{{dept.dept_name}} </td>
-<<<<<<< HEAD
       <td>
         <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
         <button class="btn btn-danger" (click)="delete(i)">Delete</button>
       </td>
-=======
-      <button class="btn btn-warning" (click)="show(dept)">Edit</button>
-      <button class="btn btn-danger" (click)="delete(dept.id)">Delete</button>
->>>>>>> 91c5516e7106124ada1b9d2ee860a80cdc67534a
     </tr>
   </table>
 
@@ -39,7 +34,6 @@
   </div>
 
   <div *ngIf="selectedDept">
-<<<<<<< HEAD
     <hr>
     <div class="container">
     <h2>Update Data</h2>
@@ -53,16 +47,5 @@
           <button type="button" class="btn btn-outline-warning" (click)="update(i)">Update</button>
         </label>
       </div>
-=======
-  <h2>Update Data</h2>
-    <div>
-      <label>
-        <div class="form-group">
-          Name:
-          <input [(ngModel)]="selectedDept.name" placeholder="name">
-        </div>
-        <button type="button" class="btn btn-outline-warning" (click)="update(selectedDept.id)">Update</button>
-      </label>
->>>>>>> 91c5516e7106124ada1b9d2ee860a80cdc67534a
     </div>
   </div>
