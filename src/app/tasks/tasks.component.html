@@ -25,14 +25,21 @@
   <ngb-tab>
     <ng-template ngbTabTitle>Create</ng-template>
     <ng-template ngbTabContent>
-      <div class="form-group">
-      <input class="form-control" [(ngModel)]="newTaskName" id="newTaskName" placeholder="name">
-      <!-- <input  #newTask  placeholder="Priority"> -->
-      <select class="form-control" id="priority" [(ngModel)]="newPriority" name="newPriority">
-        <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
-      </select>
-      <button class="button" (click)="addTask()">Add</button>
-    </div>
+      <div class="container">
+
+        <div class="form-group">
+          <label for="newTaskName">Task Name</label>
+          <input class="form-control" [(ngModel)]="newTaskName" id="newTaskName" placeholder="name">
+          <!-- <input  #newTask  placeholder="Priority"> -->
+        </div>
+        <div class="form-group">
+          <label for="newPriority">Priority Level</label>
+          <select class="form-control" id="priority" [(ngModel)]="newPriority" name="newPriority">
+            <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
+          </select>
+        </div>
+        <button class="btn btn-success" (click)="addTask()">Add</button>
+      </div>
     </ng-template>
   </ngb-tab>
   <ngb-tab>
@@ -40,11 +47,20 @@
     <ng-template ngbTabTitle>Edit</ng-template>
     <ng-template ngbTabContent>
       <div *ngIf="selectedTask">
-        <input class="form-control" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
-        <!-- <input  #newTask  placeholder="Priority"> -->
-        <select class="form-control" id="priority" [(ngModel)]="selectedTask.priority" name="selectedTaskPriority" placeholder="priority">
-          <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
-        </select>
+        <div class="container">
+          <div class="form-group">
+        <label for="selectedTaskName">Task Name</label>
+          <input class="form-control" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
+          
+        </div><!-- <input  #newTask  placeholder="Priority"> -->
+        <div class="form-group">  
+        <label for="selectedTaskPriority">Priority</label>
+          <select class="form-control" id="priority" [(ngModel)]="selectedTask.priority" name="selectedTaskPriority"
+            placeholder="priority">
+            <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
+          </select>
+        </div>
+        </div>
       </div>
     </ng-template>
   </ngb-tab>
