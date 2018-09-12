@@ -2,10 +2,8 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import {
-  departments,
-  department
-} from '../department';
+import { department } from '../department';
+import { DepartmentsService } from '../departments.service';
 
 @Component({
   selector: 'app-departments',
@@ -14,14 +12,16 @@ import {
 })
 
 export class DepartmentsComponent implements OnInit {
-  depts = departments;
+  depts: department[];
   dept_name = null;
   selectedDept: department;
   i: number;
 
-  constructor() {}
+  constructor(private departmentService: DepartmentsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getDepartments();
+  }
 
   insert(): void {
     const count = this.depts.length + 1;
@@ -29,7 +29,8 @@ export class DepartmentsComponent implements OnInit {
       id: count,
       dept_name: this.dept_name
     };
-    this.depts.push(dept);
+    // this.depts.push(dept);
+    this.departmentService.addDepartment(dept);
   }
 
   show(dept: department, i: number): void {
@@ -38,13 +39,18 @@ export class DepartmentsComponent implements OnInit {
   }
 
   update(index: number): void {
-    this.depts[index].dept_name = this.selectedDept.dept_name;
+    // this.depts[index].dept_name = this.selectedDept.dept_name;
+    this.departmentService.updateDepartment(this.selectedDept, index);
     this.selectedDept = null;
   }
 
   delete(index: number): void {
     if (index !== -1) {
-      this.depts.splice(index, 1);
+      this.departmentService.deleteDepartment(index);
     }
+  }
+
+  getDepartments(): void{
+    this.depts = this.departmentService.getDepartments();
   }
 }
