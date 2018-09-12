@@ -3,7 +3,8 @@ import {
 } from '@angular/core';
 import {
   task,
-  tasks
+  tasks,
+  priorities
 } from './tasks';
 
 @Injectable({
@@ -15,5 +16,11 @@ export class TasksService {
 
   getTasks(): task[] {
     return tasks;
+  }
+  getTask() {
+    return task;
+  }
+  getPriorities() {
+    return priorities;
   }
 }

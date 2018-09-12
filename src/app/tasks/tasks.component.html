@@ -35,7 +35,7 @@
         <div class="form-group">
           <label for="newPriority">Priority Level</label>
           <select class="form-control" id="priority" [(ngModel)]="newPriority" name="newPriority">
-            <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
+            <option *ngFor="let prio of priorities" [value]="prio">{{prio}}</option>
           </select>
         </div>
         <button class="btn btn-success" (click)="addTask()">Add</button>

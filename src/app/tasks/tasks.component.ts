@@ -3,23 +3,28 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  tasks,
   task,
   priorities
 } from '../tasks';
+import {
+  TasksService
+} from '../tasks.service';
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-  tugas = tasks;
-  priority = priorities;
+  tugas: task[];
   newTaskName; // for create
   selectedTask; // for update
   newPriority;
-  constructor() {}
-  ngOnInit() {}
+  constructor(private taskService: TasksService) {}
+
+  getTasks(): void {
+    this.tugas = this.taskService.getTasks();
+  }
+  ngOnInit() { this.getTasks(); }
 
 
   onSelect(oldTask: task) {

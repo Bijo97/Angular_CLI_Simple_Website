@@ -2,7 +2,7 @@ export class task {
   id: number;
   name: string;
   priority: string;
-};
+}
 export const tasks: task[] = [{
     id: 1,
     name: 'Develop Software',
