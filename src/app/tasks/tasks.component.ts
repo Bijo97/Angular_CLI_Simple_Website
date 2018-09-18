@@ -42,7 +42,10 @@ export class TasksComponent implements OnInit {
     this.taskService.createNewTask(newTask);
   }
   deleteTask(index: number) {
-    this.tugas.splice(index, 1);
+    this.taskService.deleteTask(index);
+  }
+  updateTask(index: number, newName: string, newPriority: string ) {
+    this.taskService.updateTask(index, newName , newPriority);
   }
 
 }

@@ -17,8 +17,8 @@ export class TasksService {
   getTasks(): Observable<Task[]> {
     return of(Tasks);
   }
-  getTask() {
-    return Task;
+  getTask(index: number) {
+    return Tasks[index];
   }
   getPriorities() {
     return priorities;
@@ -26,7 +26,11 @@ export class TasksService {
   createNewTask(newTask: Task) {
     Tasks.push(newTask);
   }
-  updateTask(newTask: Task) {
-    this.Task = newTask;
+  deleteTask(index: number) {
+    Tasks.splice(index, 1);
+  }
+  updateTask(index: number, newName: string, newPrio: string) {
+    Tasks[index].name = newName;
+    Tasks[index].priority = newPrio;
   }
 }
