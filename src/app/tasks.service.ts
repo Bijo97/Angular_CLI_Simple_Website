@@ -2,11 +2,11 @@ import {
   Injectable
 } from '@angular/core';
 import {
-  task,
-  tasks,
+  Task,
+  Tasks,
   priorities
-} from './tasks';
-
+} from './Tasks';
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,13 +14,19 @@ export class TasksService {
 
   constructor() {}
 
-  getTasks(): task[] {
-    return tasks;
+  getTasks(): Observable<Task[]> {
+    return of(Tasks);
   }
   getTask() {
-    return task;
+    return Task;
   }
   getPriorities() {
     return priorities;
+  }
+  createNewTask(newTask: Task) {
+    Tasks.push(newTask);
+  }
+  updateTask(newTask: Task) {
+    this.Task = newTask;
   }
 }

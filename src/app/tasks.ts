@@ -1,9 +1,9 @@
-export class task {
+export class Task {
   id: number;
   name: string;
   priority: string;
 }
-export const tasks: task[] = [{
+export const Tasks: Task[] = [{
     id: 1,
     name: 'Develop Software',
     priority: 'High'
