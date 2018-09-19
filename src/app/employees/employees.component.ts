@@ -1,47 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import{employees,employee} from '../employee';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  Employees,
+  Employee
+} from '../employee';
+import {
+  EmployeeService
+} from '../employee.service';
 @Component({
   selector: 'app-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
-  employeesGroup=employees;
   emp_name = null;
   emp_address = null;
-  selectedEmp: employee;
+  selectedEmp: Employee;
   i: number;
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService) {}
+  employeesGroup = this.employeeService.getEmployees;
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  insert(): void {
+    const count = this.employeesGroup.length + 1;
+    const emp: Employee = {
+      id: count,
+      emp_name: this.emp_name,
+      emp_address: this.emp_address
+    };
+    // this.employeesGroup.push(emp);
+    this.employeeService.createEmployee(emp);
   }
 
-  insert():void{
-  	let count = this.employeesGroup.length + 1;
-  	let emp: employee = {
-  		id: count,
-  		emp_name: this.emp_name,
-  		emp_address: this.emp_address
-  	};
-  	this.employeesGroup.push(emp);
-  }
-
-  show(emp:employee, i:number):void{
+  show(emp: Employee, i: number): void {
     this.selectedEmp = emp;
     this.i = i;
   }
 
-  update(index:number):void{
-  	this.employeesGroup[index].emp_name = this.selectedEmp.emp_name;
-  	this.employeesGroup[index].emp_address = this.selectedEmp.emp_address;
-  	this.selectedEmp = null;
+  update(index: number): void {
+    this.employeeService.updateEmployee(index, this.selectedEmp.emp_name, this.selectedEmp.emp_address);
+    this.selectedEmp = null;
   }
 
-  delete(index:number):void{
-  	if (index != -1){
-  		this.employeesGroup.splice(index, 1);
-  	}
+  delete(index: number): void {
+    this.employeeService.deleteEmployee(index);
   }
 
 }
