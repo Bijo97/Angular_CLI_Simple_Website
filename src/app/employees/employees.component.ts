@@ -16,14 +16,18 @@ import {
 })
 export class EmployeesComponent implements OnInit {
   emp_name = null;
+  employeesGroup: Employee[];
   emp_address = null;
   selectedEmp: Employee;
   i: number;
 
   constructor(private employeeService: EmployeeService) {}
-  employeesGroup = this.employeeService.getEmployees;
-
-  ngOnInit() {}
+  getEmployees(): void {
+    this.employeeService.getEmployees().subscribe(employeesGroup => this.employeesGroup = employeesGroup);
+  }
+  ngOnInit() {
+    this.getEmployees();
+  }
 
   insert(): void {
     const count = this.employeesGroup.length + 1;
