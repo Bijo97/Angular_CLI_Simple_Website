@@ -38,6 +38,20 @@
     <div class="container">
     <h2>Update Data</h2>
       <div>
+        <table>
+          <tr>
+            <td>No.</td>
+            <td>Employee Name</td>
+            <td>Employee Address</td>
+          </tr>
+          <tr *ngFor="let emp of emps">
+            <td>{{emp.id}}</td>
+            <td>{{emp.emp_name}}</td>
+            <td>{{emp.emp_address}}</td>
+          </tr>
+        </table>
+      </div>
+      <div>
         <label>
           <div class="form-group">
             <input type="hidden" [(ngModel)]="i" name="i" placeholder="name">

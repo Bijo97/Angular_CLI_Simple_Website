@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { department } from '../department';
 import { DepartmentsService } from '../departments.service';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-departments',
@@ -16,6 +17,7 @@ export class DepartmentsComponent implements OnInit {
   dept_name = null;
   selectedDept: department;
   i: number;
+  emps: Employee[];
 
   constructor(private departmentService: DepartmentsService) {}
 
@@ -36,6 +38,7 @@ export class DepartmentsComponent implements OnInit {
   show(dept: department, i: number): void {
     this.selectedDept = dept;
     this.i = i;
+    this.getEmployees(dept.id);
   }
 
   update(index: number): void {
@@ -51,6 +54,10 @@ export class DepartmentsComponent implements OnInit {
   }
 
   getDepartments(): void{
-    this.departmentService.getDepartments().subscribe(depts => this.depts = depts)
+    this.departmentService.getDepartments().subscribe(depts => this.depts = depts);
+  }
+
+  getEmployees(i: number): void{
+    this.departmentService.getEmployees(i).subscribe(emps => this.emps = emps);
   }
 }

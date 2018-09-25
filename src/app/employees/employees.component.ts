@@ -34,7 +34,8 @@ export class EmployeesComponent implements OnInit {
     const emp: Employee = {
       id: count,
       emp_name: this.emp_name,
-      emp_address: this.emp_address
+      emp_address: this.emp_address,
+      department_id: 1
     };
     // this.employeesGroup.push(emp);
     this.employeeService.createEmployee(emp);
