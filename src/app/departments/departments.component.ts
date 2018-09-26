@@ -5,6 +5,7 @@ import {
 import { department } from '../department';
 import { DepartmentsService } from '../departments.service';
 import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 
 @Component({
   selector: 'app-departments',
@@ -19,7 +20,7 @@ export class DepartmentsComponent implements OnInit {
   i: number;
   emps: Employee[];
 
-  constructor(private departmentService: DepartmentsService) {}
+  constructor(private departmentService: DepartmentsService, private employeeService: EmployeeService) {}
 
   ngOnInit() {
     this.getDepartments();
@@ -58,6 +59,6 @@ export class DepartmentsComponent implements OnInit {
   }
 
   getEmployees(i: number): void{
-    this.departmentService.getEmployees(i).subscribe(emps => this.emps = emps);
+    this.employeeService.getEmployeesByDept(i).subscribe(emps => this.emps = emps);
   }
 }

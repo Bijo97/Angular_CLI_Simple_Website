@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { department } from './department';
 import { departments } from './department';
 import { Observable, of } from 'rxjs';
-import { Employee } from './employee';
-import { Employees } from './employee';
 
 @Injectable({
   providedIn: 'root'
@@ -26,16 +24,5 @@ export class DepartmentsService {
 
   deleteDepartment(index: number): void{
     departments.splice(index, 1);
-  }
-
-  getEmployees(i: number): Observable<Employee[]>{
-    let temp: Employee[];
-    for (let emp of Employees){
-      if (emp.department_id == index){
-        temp.push(emp);
-      }
-    }
-
-    return of(temp);
   }
 }

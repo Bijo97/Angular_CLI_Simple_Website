@@ -33,4 +33,13 @@ export class EmployeeService {
     Employees[index].emp_name = newName;
     Employees[index].emp_address = newAddress;
   }
+  getEmployeesByDept(i: number): Observable<Employee[]>{
+    let temp: Employee[] = [];
+    for (let emp of Employees){
+      if (emp.department_id == i){
+        temp.push(emp);
+      }
+    }
+    return of(temp);
+  }
 }
