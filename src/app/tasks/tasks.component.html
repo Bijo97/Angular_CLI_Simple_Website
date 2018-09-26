@@ -11,6 +11,7 @@
     <th>Priority</th>
     <th>Department ID</th>
     <th>Employee</th>
+    <th>Due Date</th>    
     <th>action</th>
   </thead>
 
@@ -22,6 +23,7 @@
     <td> {{tsk.priority}}</td>
     <td> {{getDepartmentName(tsk.depId)}}</td>
     <td> {{getEmployeeName(tsk.empId)}}</td>
+    <td> {{tsk.dueDate.toString()}}</td>
     <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td>
   </tr>
 </table>
