@@ -63,7 +63,7 @@
           <label for="tanggal">Due Date</label>
           <!-- 1. inline datepicker -->
           <!-- 2. datepicker in the popup -->
-          <input type="text" ngbDatepicker #d="ngbDatepicker"/>
+          <input type="text" [(ngModel)]="newDate" ngbDatepicker #d="ngbDatepicker" />
           <button (click)="d.toggle()">Toggle</button>
         </div>
         <button class="btn btn-success" (click)="addTask()">Add</button>
@@ -89,14 +89,13 @@
             </select>
           </div>
           <div class="form-group">
-              <label for="tanggal">Due Date</label>
-              <!-- 1. inline datepicker -->
-              <!-- 2. datepicker in the popup -->
-              <input type="text" ngbDatepicker #d="ngbDatepicker"/>
-              <button (click)="d.toggle()">Toggle</button>
-            </div>
-            <button class="btn btn-success" (click)="addTask()">Add</button>
+            <label for="tanggal">Due Date</label>
+            <!-- 1. inline datepicker -->
+            <!-- 2. datepicker in the popup -->
+            <input type="text" [(ngModel)]="newDate" ngbDatepicker #d="ngbDatepicker" />
+            <button (click)="d.toggle()">Toggle</button>
           </div>
+          <button class="btn btn-success" (click)="addTask()">Add</button>
         </div>
       </div>
     </ng-template>
