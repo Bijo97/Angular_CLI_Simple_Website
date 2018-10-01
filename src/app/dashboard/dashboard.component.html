@@ -1,3 +1,46 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+  <table class="col-md-4 table table-dark table-responsive">
+    <thead>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+    </thead>
+    <tr *ngFor="let dept of departments; let i = index" [attr.data-index]="i">
+      <td>
+        {{dept.id}}
+      </td>
+      <td>{{dept.dept_name}} </td>
+    </tr>
+  </table>
+
+  <table class="col-md-4 table table-responsive">
+    <thead>
+      <th>ID</th>
+      <th>Task</th>
+    </thead>
+
+    <tr *ngFor="let tsk of tugas; index as i" (click)="onSelect(tsk)">
+      <td>
+        {{tsk.id}}
+      </td>
+      <td>{{tsk.name}} </td>
+    </tr>
+  </table>
+
+  <table class="col-md-4 table table-responsive table-danger">
+
+    <thead>
+      <th>ID</th>
+      <th>Name</th>
+
+    </thead>
+
+    <tr *ngFor="let emp of employeeList; let i = index" [attr.data-index]="i">
+      <td>
+        {{emp.id}}
+      </td>
+      <td>{{emp.emp_name}} </td>
+    </tr>
+
+
+  </table>
+</div>
