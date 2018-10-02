@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
   tugas: Task[];
   employeeList: Employee[];
   departments: department[];
+  selectedTask;
   constructor(private taskService: TasksService, private empService: EmployeeService, private depService: DepartmentsService) {}
 
   getTasks(): void {
@@ -41,6 +42,23 @@ export class DashboardComponent implements OnInit {
   getDepartments(): void {
     this.depService.getDepartments().subscribe(departmentList => this.departments = departmentList);
   }
+  onSelectTask(oldTask: Task) {
+    this.selectedTask = oldTask;
+  }
+  getDepartmentName(depId: number) {
+    if (depId !== null) {
+      return this.departments[depId - 1].dept_name;
+    } else {
+      return 'No Department assigned';
+    } // return tempEmp.eame;
+  }
+  getEmployeeName(empId: number) {
+   if (empId !== null) {
+    return this.employeeList[empId - 1].emp_name;
+   } else {
+     return 'no employees assigned'; // return tempEmp.eame;
+  }
+}
 
   ngOnInit() {
     this.getTasks();
