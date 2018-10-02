@@ -64,7 +64,7 @@
           <!-- 1. inline datepicker -->
           <!-- 2. datepicker in the popup -->
           <input type="text" [(ngModel)]="newDate" ngbDatepicker #d="ngbDatepicker" />
-          <button (click)="d.toggle()">Toggle</button>
+          <button  class="btn" (click)="d.toggle()"><span class="glyphicon glyphicon-calendar"></span></button>
         </div>
         <button class="btn btn-success" (click)="addTask()">Add</button>
       </div>
