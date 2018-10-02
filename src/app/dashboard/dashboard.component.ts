@@ -31,6 +31,8 @@ export class DashboardComponent implements OnInit {
   employeeList: Employee[];
   departments: department[];
   selectedTask;
+  selectedDept;
+  selectedEmp;
   constructor(private taskService: TasksService, private empService: EmployeeService, private depService: DepartmentsService) {}
 
   getTasks(): void {
@@ -43,7 +45,19 @@ export class DashboardComponent implements OnInit {
     this.depService.getDepartments().subscribe(departmentList => this.departments = departmentList);
   }
   onSelectTask(oldTask: Task) {
+    this.selectedEmp = null;
+    this.selectedDept = null;
     this.selectedTask = oldTask;
+  }
+  onSelectEmp(oldEmp: Employee) {
+    this.selectedDept = null;
+    this.selectedTask = null;
+    this.selectedEmp = oldEmp;
+  }
+  onSelectDept(oldDept: department) {
+    this.selectedTask = null;
+    this.selectedEmp = null;
+    this.selectedDept = oldDept;
   }
   getDepartmentName(depId: number) {
     if (depId !== null) {
