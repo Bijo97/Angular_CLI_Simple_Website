@@ -24,6 +24,8 @@ import {
 export class EmployeesComponent implements OnInit {
   emp_name = null;
   employeesGroup: Employee[];
+  searchEmployee: Employee[] = [];
+  searchName: string;
   emp_address = null;
   selectedEmp: Employee;
   i: number;
@@ -70,7 +72,18 @@ export class EmployeesComponent implements OnInit {
     this.employeeService.deleteEmployee(index);
   }
 
-  getDepartment(i: number): void{
+  getDepartment(i: number): void {
     this.departmentService.getDepartmentById(i).subscribe(dept => this.dept = dept);
+  }
+  searchEmp() {
+    this.searchEmployee = [];
+    for (let i = 0; i < this.employeesGroup.length; i++) {
+      // nameRegex = new RegExp(this.tugas[i].name , 'gi');
+      // console.log(nameRegex);
+        // console.log(this.tugas[i].name + this.searchName.search(this.tugas[i].name));
+      if (this.searchName.toLowerCase() === this.employeesGroup[i].emp_name.toLowerCase()) {
+        this.searchEmployee.push(this.employeesGroup[i]);
+      }
+    }
   }
 }
