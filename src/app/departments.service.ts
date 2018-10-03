@@ -34,4 +34,13 @@ export class DepartmentsService {
     }
     return null;
   }
+
+  searchDepartment(key: string): Observable<department>{
+    for (let dept of departments){
+      if (dept.dept_name == key){
+        return of(dept);
+      }
+    }
+    return null;
+  }
 }

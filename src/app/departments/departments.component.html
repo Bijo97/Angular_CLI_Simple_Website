@@ -2,24 +2,51 @@
     Departments works too!
     <!-- of course they do too -->
   </h1>
-  <table class="table">
-    <thead>
-      <th>ID</th>
-      <th>Name</th> 
-      <th>Action</th> 
-    </thead>
-  
-    <tr *ngFor="let dept of depts; let i = index" [attr.data-index]="i">
-      <td>
-        {{dept.id}}
-      </td>
-      <td>{{dept.dept_name}} </td>
-      <td>
-        <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
-        <button class="btn btn-danger" (click)="delete(i)">Delete</button>
-      </td>
-    </tr>
-  </table>
+  <div class="col-sm-4">
+    <label for="typeahead-basic">Search for a department:</label>
+    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="key"/>
+  </div>
+  <div class="col-sm-1">
+    <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+  </div><br>
+  <div *ngIf="findDept">
+    <table class="table">
+      <thead>
+        <th>ID</th>
+        <th>Name</th> 
+        <th>Action</th> 
+      </thead>
+      <tr>
+        <td>
+          {{findDept.id}}
+        </td>
+        <td>{{findDept.dept_name}} </td>
+        <td>
+          <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
+          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="!findDept">
+    <table class="table">
+      <thead>
+        <th>ID</th>
+        <th>Name</th> 
+        <th>Action</th> 
+      </thead>
+      <tr *ngFor="let dept of depts; let i = index" [attr.data-index]="i">
+        <td>
+          {{dept.id}}
+        </td>
+        <td>{{dept.dept_name}} </td>
+        <td>
+          <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
+          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
 
   <hr>
 

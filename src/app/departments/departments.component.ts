@@ -19,6 +19,8 @@ export class DepartmentsComponent implements OnInit {
   selectedDept: department;
   i: number;
   emps: Employee[];
+  key = null;
+  findDept: department;
 
   constructor(private departmentService: DepartmentsService, private employeeService: EmployeeService) {}
 
@@ -60,5 +62,9 @@ export class DepartmentsComponent implements OnInit {
 
   getEmployees(i: number): void{
     this.employeeService.getEmployeesByDept(i).subscribe(emps => this.emps = emps);
+  }
+
+  search(): void{
+    this.departmentService.searchDepartment(this.key).subscribe(findDept => this.findDept = findDept);
   }
 }
