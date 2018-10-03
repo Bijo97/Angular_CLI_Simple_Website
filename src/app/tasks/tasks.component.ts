@@ -20,6 +20,15 @@ import {
 import {
   EmployeeService
 } from '../employee.service';
+import {
+  Observable
+} from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map
+} from 'rxjs/operators';
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -27,9 +36,11 @@ import {
 })
 export class TasksComponent implements OnInit {
   // initial variables
+  public model: any;
   tugas: Task[];
   employeeList: Employee[];
   departments: department[];
+  departmentsNames: string[];
   newTaskName; // for create
   newDepartment;
   newEmployee;
@@ -76,17 +87,26 @@ export class TasksComponent implements OnInit {
     } // return tempEmp.eame;
   }
   getEmployeeName(empId: number) {
-   if (empId !== null) {
-    return this.employeeList[empId - 1].emp_name;
-   } else {
-     return 'no employees assigned'; // return tempEmp.eame;
+    if (empId !== null) {
+      return this.employeeList[empId - 1].emp_name;
+    } else {
+      return 'no employees assigned'; // return tempEmp.eame;
+    }
   }
-}
   deleteTask(index: number) {
     this.taskService.deleteTask(index);
   }
   updateTask(index: number, newName: string, newPriority: string) {
     this.taskService.updateTask(index, newName, newPriority);
   }
+  search = (text$: Observable < string > ) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 2 ? [] :
+        this.tugas.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
+    formatter = (x: {name: string}) => x.name;
+
 
 }
