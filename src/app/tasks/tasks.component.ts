@@ -38,10 +38,12 @@ export class TasksComponent implements OnInit {
   // initial variables
   public model: any;
   tugas: Task[];
+  searchTugas: Task[];
   employeeList: Employee[];
   departments: department[];
   departmentsNames: string[];
   newTaskName; // for create
+  searchName;
   newDepartment;
   newEmployee;
   selectedTask; // for update
@@ -99,14 +101,26 @@ export class TasksComponent implements OnInit {
   updateTask(index: number, newName: string, newPriority: string) {
     this.taskService.updateTask(index, newName, newPriority);
   }
-  search = (text$: Observable < string > ) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? [] :
-        this.tugas.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
-    formatter = (x: {name: string}) => x.name;
+  searchTask() {
+    // let nameRegex;
+    this.searchTugas = [];
+    for (let i = 0; i < this.tugas.length; i++) {
+      // nameRegex = '/' + this.tugas[i].name + '/gi';
+      // console.log(nameRegex);
+        console.log(this.tugas[i].name + this.searchName.search(this.tugas[i].name));
+      if (this.searchName.search(this.tugas[i].name) !== -1) {
+        this.searchTugas.push(this.tugas[i]);
+      }
+    }
+  }
+  // search = (text$: Observable < string > ) =>
+  //   text$.pipe(
+  //     debounceTime(200),
+  //     distinctUntilChanged(),
+  //     map(term => term.length < 2 ? [] :
+  //       this.tugas.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+  //   )
+  //   formatter = (x: {name: string}) => x.name;
 
 
 }
