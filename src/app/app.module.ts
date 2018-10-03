@@ -9,6 +9,7 @@ import { DepartmentsComponent } from './departments/departments.component';
 import { EmployeesComponent } from './employees/employees.component';//"this is where ng model comes from"
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule }     from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AppRoutingModule }     from './app-routing.module';
     TasksComponent,
     DepartmentsComponent,
     EmployeesComponent,
+    DashboardComponent,
   ],
   imports: [
     NgbModule,

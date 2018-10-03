@@ -1,13 +1,16 @@
-<h1>
-  Tasks need to be worked!
-  <!-- of course they do -->
-</h1>
+<label for="typeahead-basic">Search for task:</label>
+<input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search"/>
+
+
 
 <table class="table table-responsive">
   <thead>
     <th>ID</th>
     <th>Task</th>
     <th>Priority</th>
+    <th>Department ID</th>
+    <th>Employee</th>
+    <th>Due Date</th>
     <th>action</th>
   </thead>
 
@@ -17,6 +20,9 @@
     </td>
     <td>{{tsk.name}} </td>
     <td> {{tsk.priority}}</td>
+    <td> {{getDepartmentName(tsk.depId)}}</td>
+    <td> {{getEmployeeName(tsk.empId)}}</td>
+    <td> {{tsk.dueDate.toString()}}</td>
     <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td>
   </tr>
 </table>
@@ -26,7 +32,6 @@
     <ng-template ngbTabTitle>Create</ng-template>
     <ng-template ngbTabContent>
       <div class="container">
-
         <div class="form-group">
           <label for="newTaskName">Task Name</label>
           <input class="form-control" [(ngModel)]="newTaskName" id="newTaskName" placeholder="name">
@@ -39,6 +44,27 @@
             <option *ngFor="let prio of priorityList" [value]="prio">{{prio}}</option>
           </select>
         </div>
+        <div class="form-group">
+          <label for="departments">Departments</label>
+          <select class="form-control" id="departments" [(ngModel)]="newDepartment" name="departmentList" placeholder="Department Name">
+            <option value="" disabled selected>Select Departments</option>
+            <option *ngFor="let dep of departments" [value]="dep.id">{{dep.dept_name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="employees">Employee Name</label>
+          <select class="form-control" id="employees" [(ngModel)]="newEmployee" name="employees" placeholder="employee name">
+            <option value="" disabled selected>Select your option</option>
+            <option *ngFor="let emp of employeeList" [value]="emp.id">{{emp.emp_name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tanggal">Due Date</label>
+          <!-- 1. inline datepicker -->
+          <!-- 2. datepicker in the popup -->
+          <input type="text" [(ngModel)]="newDate" ngbDatepicker #d="ngbDatepicker" />
+          <button  class="btn" (click)="d.toggle()"><span class="glyphicon glyphicon-calendar"></span></button>
+        </div>
         <button class="btn btn-success" (click)="addTask()">Add</button>
       </div>
     </ng-template>
@@ -50,17 +76,25 @@
       <div *ngIf="selectedTask">
         <div class="container">
           <div class="form-group">
-        <label for="selectedTaskName">Task Name</label>
-          <input class="form-control" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
-          
-        </div><!-- <input  #newTask  placeholder="Priority"> -->
-        <div class="form-group">  
-        <label for="selectedTaskPriority">Priority</label>
-          <select class="form-control" id="priority" [(ngModel)]="selectedTask.priority" name="selectedTaskPriority"
-            placeholder="priority">
-            <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
-          </select>
-        </div>
+            <label for="selectedTaskName">Task Name</label>
+            <input class="form-control" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
+
+          </div><!-- <input  #newTask  placeholder="Priority"> -->
+          <div class="form-group">
+            <label for="selectedTaskPriority">Priority</label>
+            <select class="form-control" id="priority" [(ngModel)]="selectedTask.priority" name="selectedTaskPriority"
+              placeholder="priority">
+              <option *ngFor="let prio of priority" [value]="prio">{{prio}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tanggal">Due Date</label>
+            <!-- 1. inline datepicker -->
+            <!-- 2. datepicker in the popup -->
+            <input type="text" [(ngModel)]="newDate" ngbDatepicker #d="ngbDatepicker" />
+            <button (click)="d.toggle()">Toggle</button>
+          </div>
+          <button class="btn btn-success" (click)="addTask()">Add</button>
         </div>
       </div>
     </ng-template>
