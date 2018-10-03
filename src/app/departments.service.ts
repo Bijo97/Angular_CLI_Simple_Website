@@ -25,4 +25,22 @@ export class DepartmentsService {
   deleteDepartment(index: number): void{
     departments.splice(index, 1);
   }
+
+  getDepartmentById(i: number): Observable<department>{
+    for (let dept of departments){
+      if (dept.id == i){
+        return of(dept);
+      }
+    }
+    return null;
+  }
+
+  searchDepartment(key: string): Observable<department>{
+    for (let dept of departments){
+      if (dept.dept_name == key){
+        return of(dept);
+      }
+    }
+    return null;
+  }
 }
