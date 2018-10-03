@@ -8,6 +8,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { DepartmentsComponent } from './departments/departments.component';
 import { EmployeesComponent } from './employees/employees.component';//"this is where ng model comes from"
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule }     from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     NgbModule,
     BrowserModule,
     FormsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
