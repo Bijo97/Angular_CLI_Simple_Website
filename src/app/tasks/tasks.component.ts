@@ -38,10 +38,9 @@ export class TasksComponent implements OnInit {
   // initial variables
   public model: any;
   tugas: Task[];
-  searchTugas: Task[];
+  searchTugas: Task[] = [];
   employeeList: Employee[];
   departments: department[];
-  departmentsNames: string[];
   newTaskName; // for create
   searchName;
   newDepartment;
@@ -105,10 +104,10 @@ export class TasksComponent implements OnInit {
     // let nameRegex;
     this.searchTugas = [];
     for (let i = 0; i < this.tugas.length; i++) {
-      // nameRegex = '/' + this.tugas[i].name + '/gi';
+      // nameRegex = new RegExp(this.tugas[i].name , 'gi');
       // console.log(nameRegex);
-        console.log(this.tugas[i].name + this.searchName.search(this.tugas[i].name));
-      if (this.searchName.search(this.tugas[i].name) !== -1) {
+        // console.log(this.tugas[i].name + this.searchName.search(this.tugas[i].name));
+      if (this.searchName.toLowerCase() === this.tugas[i].name.toLowerCase()) {
         this.searchTugas.push(this.tugas[i]);
       }
     }
