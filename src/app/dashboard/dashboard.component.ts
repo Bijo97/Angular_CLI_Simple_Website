@@ -20,6 +20,11 @@ import {
 import {
   EmployeeService
 } from '../employee.service';
+import {
+  NgbModal,
+  ModalDismissReasons
+} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +38,10 @@ export class DashboardComponent implements OnInit {
   selectedTask;
   selectedDept;
   selectedEmp;
-  constructor(private taskService: TasksService, private empService: EmployeeService, private depService: DepartmentsService) {}
+  closeResult: string;
+
+  constructor(private modalService: NgbModal, private taskService: TasksService, private empService: EmployeeService, 
+    private depService: DepartmentsService) {}
 
   getTasks(): void {
     this.taskService.getObservableTask().subscribe(tugas => this.tugas = tugas);
@@ -44,20 +52,30 @@ export class DashboardComponent implements OnInit {
   getDepartments(): void {
     this.depService.getDepartments().subscribe(departmentList => this.departments = departmentList);
   }
-  onSelectTask(oldTask: Task) {
+  onSelectTask(oldTask: Task, detail) {
     this.selectedEmp = null;
     this.selectedDept = null;
     this.selectedTask = oldTask;
-  }
-  onSelectEmp(oldEmp: Employee) {
+    this.modalService.open(detail, {
+      ariaLabelledBy: 'modal-detail'
+    }).result.then((result) => {
+      this.closeResult = ``;
+    }, (reason) => {
+      this.closeResult = ``;
+    });  }
+  onSelectEmp(oldEmp: Employee, detail) {
     this.selectedDept = null;
     this.selectedTask = null;
     this.selectedEmp = oldEmp;
+    open(detail);
+
   }
-  onSelectDept(oldDept: department) {
+  onSelectDept(oldDept: department, detail) {
     this.selectedTask = null;
     this.selectedEmp = null;
     this.selectedDept = oldDept;
+    open(detail);
+
   }
   getDepartmentName(depId: number) {
     if (depId !== null) {
@@ -67,17 +85,37 @@ export class DashboardComponent implements OnInit {
     } // return tempEmp.eame;
   }
   getEmployeeName(empId: number) {
-   if (empId !== null) {
-    return this.employeeList[empId - 1].emp_name;
-   } else {
-     return 'no employees assigned'; // return tempEmp.eame;
+    if (empId !== null) {
+      return this.employeeList[empId - 1].emp_name;
+    } else {
+      return 'no employees assigned'; // return tempEmp.eame;
+    }
   }
-}
 
   ngOnInit() {
     this.getTasks();
     this.getEmployees();
     this.getDepartments();
+  }
+
+  open(detail) {
+    this.modalService.open(detail, {
+      ariaLabelledBy: 'modal-detail'
+    }).result.then((result) => {
+      this.closeResult = ``;
+    }, (reason) => {
+      this.closeResult = ``;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return '';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return '';
+    } else {
+      return ``;
+    }
   }
 
 }
