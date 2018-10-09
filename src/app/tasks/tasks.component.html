@@ -67,7 +67,7 @@
       </td>
       <!-- <td> {{tsk.empId}}</td> -->
       <td *ngIf="tsk.due_date===null"> {{tsk.due_date}}</td>
-      <td *ngIf="tsk.due_date!==null"> {{tsk.due_date.toString()}}</td>
+      <td *ngIf="tsk.due_date!==null"> {{tsk.due_date|date:'medium'}}</td>
 
       <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td>
     </tr>
@@ -156,7 +156,7 @@
             <label for="tanggal">Due Date</label>
             <!-- 1. inline datepicker -->
             <!-- 2. datepicker in the popup -->
-            <input type="text" [(ngModel)]="selectedTask.due_date" ngbDatepicker #d="ngbDatepicker" />
+            <input type="date" [(ngModel)]="selectedTask.due_date" ngbDatepicker #d="ngbDatepicker" />
             <button (click)="d.toggle()">Toggle</button>
           </div>
           <button class="btn btn-success" (click)="updateTask()">Edit</button>

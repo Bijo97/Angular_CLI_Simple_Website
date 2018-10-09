@@ -51,7 +51,7 @@ export class TasksComponent implements OnInit {
   newDepartment;
   // newEmployee;
   newEmpList: number[] = [];
-  newDate;
+  newDate: Date;
 
 
 
@@ -79,7 +79,7 @@ export class TasksComponent implements OnInit {
     this.selectedTask = oldTask;
   }
   addTask() {
-    const newId = this.tugas.length + 1;
+    const newId = this.tugas[this.tugas.length - 1].id + 1;
     const newTask: Task = {
       id: newId,
       name: this.newTaskName,
