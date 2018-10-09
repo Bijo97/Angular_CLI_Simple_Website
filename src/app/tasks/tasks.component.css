@@ -1,3 +1,4 @@
-/* table,th,td{
-    border:2px solid darkcyan;
-} */
+tr:hover{
+    color: blue;
+    cursor:pointer;
+}
