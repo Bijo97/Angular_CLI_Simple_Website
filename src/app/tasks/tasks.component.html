@@ -67,7 +67,7 @@
       </td>
       <!-- <td> {{tsk.empId}}</td> -->
       <td *ngIf="tsk.due_date===null"> {{tsk.due_date}}</td>
-      <td *ngIf="tsk.due_date!==null"> {{tsk.due_date|date:'medium'}}</td>
+      <td *ngIf="tsk.due_date!==null"> {{tsk.due_date.day}}- {{tsk.due_date.month}}-{{tsk.due_date.year}}</td>
 
       <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td>
     </tr>

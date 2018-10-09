@@ -88,7 +88,7 @@ export class TasksComponent implements OnInit {
       employees: this.newEmpList.slice(),
       due_date: this.newDate
     };
-    // this.tugas.push(newTask);
+    console.log(this.newDate);
     this.tugas.push(newTask);
   }
   getDepartmentName(depId: number) {
