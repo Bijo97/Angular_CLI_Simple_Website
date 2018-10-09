@@ -41,16 +41,19 @@ export class TasksComponent implements OnInit {
   searchTugas: Task[] = [];
   employeeList: Employee[];
   departments: department[];
-  newDate;
-  newTaskName; // for create
   searchName;
-  newDepartment;
-  newEmployee;
   selectedTask; // for update
   newPriority;
-  newEmpList;
-  newDept;
   priorityList = this.taskService.getPriorities();
+
+  // variable for create
+  newTaskName; // for create
+  newDepartment;
+  // newEmployee;
+  newEmpList: number[] = [];
+  newDate;
+
+
 
   constructor(private taskService: TasksService,
     private empService: EmployeeService,
@@ -82,7 +85,7 @@ export class TasksComponent implements OnInit {
       name: this.newTaskName,
       // priority: this.newPriority,
       department_id: this.newDepartment,
-      employees: this.newEmployee,
+      employees: this.newEmpList,
       due_date: null
     };
     // this.tugas.push(newTask);
@@ -135,14 +138,14 @@ export class TasksComponent implements OnInit {
   deleteTask(index: number) {
     this.tugas.splice(index, 1);
   }
-  updateTask() {
-    const index = this.selectedTask.id;
-    this.tugas[index].name = this.newTaskName;
-    this.tugas[index].due_date = this.newDate;
-    this.tugas[index].employees = this.newEmpList;
-    this.tugas[index].department_id = this.newDept;
-    // this.tugas[index].employees = newEmpList;
-    // this.tugas[index].priority = newPrio;
-  }
+  // updateTask() {
+  //   const index = this.selectedTask.id;
+  //   this.tugas[index].name = this.newTaskName;
+  //   this.tugas[index].due_date = this.newDate;
+  //   this.tugas[index].employees = this.newEmpList;
+  //   this.tugas[index].department_id = this.newDept;
+  //   // this.tugas[index].employees = newEmpList;
+  //   // this.tugas[index].priority = newPrio;
+  // }
 
 }
