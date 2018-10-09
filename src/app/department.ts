@@ -3,7 +3,7 @@ export class department {
   name: string;
   building: string;
   employees: number[];
-};
+}
 // export const departments: department[] = [{
 //     id: 1,
 //     dept_name: 'IT'

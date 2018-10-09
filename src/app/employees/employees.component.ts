@@ -39,11 +39,11 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit() {
     this.getEmployees();
-    for (let emp of this.employeesGroup){
-      this.getDepartment(emp.department_id);
-      this.depts.push(this.dept);
-      // console.log(this.depts[0].dept_name);
-    }
+    // for (let emp of this.employeesGroup){
+    //   this.getDepartment(emp.department_id);
+    //   this.depts.push(this.dept);
+    //   // console.log(this.depts[0].dept_name);
+    // }
   }
 
   insert(): void {
