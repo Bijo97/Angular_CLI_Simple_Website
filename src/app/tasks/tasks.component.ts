@@ -85,8 +85,8 @@ export class TasksComponent implements OnInit {
       name: this.newTaskName,
       // priority: this.newPriority,
       department_id: this.newDepartment,
-      employees: this.newEmpList,
-      due_date: null
+      employees: this.newEmpList.slice(),
+      due_date: this.newDate
     };
     // this.tugas.push(newTask);
     this.tugas.push(newTask);
