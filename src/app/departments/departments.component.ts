@@ -2,10 +2,18 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { department } from '../department';
-import { DepartmentsService } from '../departments.service';
-import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import {
+  department
+} from '../department';
+import {
+  DepartmentsService
+} from '../departments.service';
+import {
+  Employee
+} from '../employee';
+import {
+  EmployeeService
+} from '../employee.service';
 
 @Component({
   selector: 'app-departments',
@@ -56,15 +64,15 @@ export class DepartmentsComponent implements OnInit {
     }
   }
 
-  getDepartments(): void{
+  getDepartments(): void {
     this.departmentService.getDepartments().subscribe(depts => this.depts = depts);
   }
 
-  getEmployees(i: number): void{
+  getEmployees(i: number): void {
     this.employeeService.getEmployeesByDept(i).subscribe(emps => this.emps = emps);
   }
 
-  search(): void{
+  search(): void {
     this.departmentService.searchDepartment(this.key).subscribe(findDept => this.findDept = findDept);
   }
 }
