@@ -54,7 +54,7 @@
         <thead>
           <th>ID</th>
           <th>Task</th>
-          <th>Priority</th>
+          <!-- <th>Priority</th> -->
           <th>Department ID</th>
           <th>Employee</th>
           <th>Due Date</th>
@@ -65,9 +65,9 @@
             {{selectedTask.id}}
           </td>
           <td>{{selectedTask.name}} </td>
-          <td> {{selectedTask.priority}}</td>
-          <td> {{getDepartmentName(selectedTask.depId)}}</td>
-          <td> {{getEmployeeName(selectedTask.empId)}}</td>
+          <!-- <td> {{selectedTask.priority}}</td> -->
+          <td> {{getDepartmentName(selectedTask.department_id)}}</td>
+          <td> {{getEmployeeName(selectedTask.employees)}}</td>
           <td> {{selectedTask.dueDate.toString()}}</td>
           <!-- <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td> -->
         </tr>

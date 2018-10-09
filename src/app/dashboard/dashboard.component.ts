@@ -43,6 +43,26 @@ export class DashboardComponent implements OnInit {
   constructor(private modalService: NgbModal, private taskService: TasksService, private empService: EmployeeService, 
     private depService: DepartmentsService) {}
 
+  open(detail) {
+    this.modalService.open(detail, {
+      ariaLabelledBy: 'modal-detail'
+    }).result.then((result) => {
+      this.closeResult = ``;
+    }, (reason) => {
+      this.closeResult = ``;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return '';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return '';
+    } else {
+      return ``;
+    }
+  }
+
   getTasks(): void {
     this.taskService.getObservableTask().subscribe(tugas => this.tugas = tugas);
   }
@@ -56,13 +76,15 @@ export class DashboardComponent implements OnInit {
     this.selectedEmp = null;
     this.selectedDept = null;
     this.selectedTask = oldTask;
-    this.modalService.open(detail, {
-      ariaLabelledBy: 'modal-detail'
-    }).result.then((result) => {
-      this.closeResult = ``;
-    }, (reason) => {
-      this.closeResult = ``;
-    });  }
+    this.open(detail);
+    // this.modalService.open(detail, {
+    //   ariaLabelledBy: 'modal-detail'
+    // }).result.then((result) => {
+    //   this.closeResult = ``;
+    // }, (reason) => {
+    //   this.closeResult = ``;
+    // });
+  }
   onSelectEmp(oldEmp: Employee, detail) {
     this.selectedDept = null;
     this.selectedTask = null;
@@ -97,25 +119,4 @@ export class DashboardComponent implements OnInit {
     this.getEmployees();
     this.getDepartments();
   }
-
-  open(detail) {
-    this.modalService.open(detail, {
-      ariaLabelledBy: 'modal-detail'
-    }).result.then((result) => {
-      this.closeResult = ``;
-    }, (reason) => {
-      this.closeResult = ``;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return '';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return '';
-    } else {
-      return ``;
-    }
-  }
-
 }
