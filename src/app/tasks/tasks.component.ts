@@ -48,10 +48,15 @@ export class TasksComponent implements OnInit {
   selectedTask; // for update
   newPriority;
   priorityList = this.taskService.getPriorities();
-  constructor(private taskService: TasksService, private empService: EmployeeService, private depService: DepartmentsService) {}
+
+  constructor(private taskService: TasksService,
+     private empService: EmployeeService,
+      private depService: DepartmentsService,
+      ) {}
 
   getTasks(): void {
-    this.taskService.getTasks().subscribe(tugas => this.tugas = tugas);
+    this.taskService.getObservableTask().subscribe(tugas => this.tugas = tugas);
+    //  return this.http.get<Task[]>(this.taskUrl);
   }
   getEmployees(): void {
     this.empService.getEmployees().subscribe(employeeList => this.employeeList = employeeList);
@@ -60,7 +65,7 @@ export class TasksComponent implements OnInit {
     this.depService.getDepartments().subscribe(departmentList => this.departments = departmentList);
   }
   ngOnInit() {
-    this.getTasks();
+   this.getTasks();
     this.getEmployees();
     this.getDepartments();
   }
@@ -72,7 +77,7 @@ export class TasksComponent implements OnInit {
     const newTask: Task = {
       id: newId,
       name: this.newTaskName,
-      priority: this.newPriority,
+      // priority: this.newPriority,
       depId: this.newDepartment,
       empId: this.newEmployee,
       dueDate: null

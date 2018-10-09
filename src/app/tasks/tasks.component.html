@@ -12,9 +12,9 @@
       <thead>
         <th>ID</th>
         <th>Task</th>
-        <th>Priority</th>
-        <th>Department ID</th>
-        <th>Employee</th>
+        <!-- <th>Priority</th> -->
+        <th>Department</th>
+        <th>Employees</th>
         <th>Due Date</th>
       </thead>
   
@@ -23,8 +23,8 @@
           {{tsk.id}}
         </td>
         <td>{{tsk.name}} </td>
-        <td> {{tsk.priority}}</td>
-        <td> {{getDepartmentName(tsk.depId)}}</td>
+        <!-- <td> {{tsk.priority}}</td> -->
+        <td> {{getDepartmentName(tsk.department_id)}}</td>
         <td> {{getEmployeeName(tsk.empId)}}</td>
         <td> {{tsk.dueDate.toString()}}</td>
       </tr>
@@ -41,9 +41,9 @@
     <thead>
       <th>ID</th>
       <th>Task</th>
-      <th>Priority</th>
-      <th>Department ID</th>
-      <th>Employee</th>
+      <!-- <th>Priority</th> -->
+      <th>Department</th>
+      <th>Employees</th>
       <th>Due Date</th>
       <th>action</th>
     </thead>
@@ -53,10 +53,14 @@
         {{tsk.id}}
       </td>
       <td>{{tsk.name}} </td>
-      <td> {{tsk.priority}}</td>
-      <td> {{getDepartmentName(tsk.depId)}}</td>
-      <td> {{getEmployeeName(tsk.empId)}}</td>
-      <td> {{tsk.dueDate.toString()}}</td>
+      <!-- <td> {{tsk.priority}}</td> -->
+      <!-- <td> {{getDepartmentName(tsk.depId)}}</td> -->
+      <td> {{tsk.department_id}}</td>
+      <td >
+        <p *ngFor="let emp of tsk.employees">{{emp}}</p>
+      </td>      
+      <!-- <td> {{tsk.empId}}</td> -->
+      <td> {{tsk.due_date}}</td>
       <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td>
     </tr>
   </table>
