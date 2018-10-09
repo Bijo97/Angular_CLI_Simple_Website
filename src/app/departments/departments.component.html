@@ -1,92 +1,102 @@
 <h1>
-    Departments works too!
-    <!-- of course they do too -->
-  </h1>
-  <div class="col-sm-4">
-    <label for="typeahead-basic">Search for a department:</label>
-    <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="key"/>
-  </div>
-  <div class="col-sm-1">
-    <button type="button" class="btn btn-primary" (click)="search()">Search</button>
-  </div><br>
-  <div *ngIf="findDept">
-    <table class="table">
-      <thead>
-        <th>ID</th>
-        <th>Name</th> 
-        <th>Action</th> 
-      </thead>
-      <tr>
-        <td>
-          {{findDept.id}}
-        </td>
-        <td>{{findDept.dept_name}} </td>
-        <td>
-          <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
-          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div *ngIf="!findDept">
-    <table class="table">
-      <thead>
-        <th>ID</th>
-        <th>Name</th> 
-        <th>Action</th> 
-      </thead>
-      <tr *ngFor="let dept of depts; let i = index" [attr.data-index]="i">
-        <td>
-          {{dept.id}}
-        </td>
-        <td>{{dept.dept_name}} </td>
-        <td>
-          <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
-          <button class="btn btn-danger" (click)="delete(i)">Delete</button>
-        </td>
-      </tr>
-    </table>
-  </div>
+  Departments works too!
+  <!-- of course they do too -->
+</h1>
+<div class="col-sm-4">
+  <label for="typeahead-basic">Search for a department:</label>
+  <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="key" />
+</div>
+<div class="col-sm-1">
+  <button type="button" class="btn btn-primary" (click)="search()">Search</button>
+</div><br>
+<div *ngIf="findDept">
+  <table class="table">
+    <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Action</th>
+    </thead>
+    <tr>
+      <td>
+        {{findDept.id}}
+      </td>
+      <td>{{findDept.dept_name}} </td>
+      <td>
+        <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
+        <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div *ngIf="!findDept">
+  <table class="table">
+    <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Building</th>
+      <th>Employees</th>
 
+      <th>Action</th>
+    </thead>
+    <tr *ngFor="let dept of depts; let i = index" [attr.data-index]="i">
+      <td>
+        {{dept.id}}
+      </td>
+      <td>{{dept.name}} </td>
+      <td>{{dept.building}} </td>
+      <td>
+        <p *ngFor='let emp of dept.employees'>
+          {{emp}}
+        </p>
+      </td>
+
+      <td>
+        <button class="btn btn-warning" (click)="show(dept, i)">Edit</button>
+        <button class="btn btn-danger" (click)="delete(i)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<hr>
+
+<div class="container">
+  <h3>Add New Department</h3>
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control" id="dept_name" name="dept_name" placeholder="Department Name" [(ngModel)]="dept_name">
+    </div>
+    <button type="button" class="btn btn-outline-success" (click)="insert()">Submit</button>
+  </form>
+</div>
+
+<div *ngIf="selectedDept">
   <hr>
-
   <div class="container">
-    <h3>Add New Department</h3>
-    <form>
-      <div class="form-group">
-        <input type="text" class="form-control" id="dept_name" name="dept_name" placeholder="Department Name" [(ngModel)]="dept_name">
-      </div>
-      <button type="button" class="btn btn-outline-success" (click)="insert()">Submit</button>
-    </form>
-  </div>
-
-  <div *ngIf="selectedDept">
-    <hr>
-    <div class="container">
     <h2>Update Data</h2>
-      <div>
-        <table class="table table-dark">
-          <tr>
-            <th>No.</th>
-            <th>Employee Name</th>
-            <th>Employee Address</th>
-          </tr>
-          <tr *ngFor="let emp of emps">
-            <td>{{emp.id}}</td>
-            <td>{{emp.emp_name}}</td>
-            <td>{{emp.emp_address}}</td>
-          </tr>
-        </table>
-      </div>
-      <div>
-        <label>
-          <div class="form-group">
-            <input type="hidden" [(ngModel)]="i" name="i" placeholder="name">
-            Name:
-            <input type="text" class="form-control" [(ngModel)]="selectedDept.dept_name" name="dept_name2" placeholder="name">
-          </div>
-          <button type="button" class="btn btn-outline-warning" (click)="update(i)">Update</button>
-        </label>
-      </div>
+    <div>
+      <table class="table table-dark">
+        <tr>
+          <th>No.</th>
+          <th>Employee Name</th>
+          <th>Employee Address</th>
+        </tr>
+        <tr *ngFor="let emp of emps">
+          <td>{{emp.id}}</td>
+          <td>{{emp.emp_name}}</td>
+          <td>{{emp.emp_address}}</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <label>
+        <div class="form-group">
+          <input type="hidden" [(ngModel)]="i" name="i" placeholder="name">
+          Name:
+          <input type="text" class="form-control" [(ngModel)]="selectedDept.dept_name" name="dept_name2" placeholder="name">
+        </div>
+        <button type="button" class="btn btn-outline-warning" (click)="update(i)">Update</button>
+      </label>
     </div>
   </div>
+</div>
