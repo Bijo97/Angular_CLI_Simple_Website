@@ -41,18 +41,21 @@ export class TasksComponent implements OnInit {
   searchTugas: Task[] = [];
   employeeList: Employee[];
   departments: department[];
+  newDate;
   newTaskName; // for create
   searchName;
   newDepartment;
   newEmployee;
   selectedTask; // for update
   newPriority;
+  newEmpList;
+  newDept;
   priorityList = this.taskService.getPriorities();
 
   constructor(private taskService: TasksService,
-     private empService: EmployeeService,
-      private depService: DepartmentsService,
-      ) {}
+    private empService: EmployeeService,
+    private depService: DepartmentsService,
+  ) {}
 
   getTasks(): void {
     this.taskService.getObservableTask().subscribe(tugas => this.tugas = tugas);
@@ -65,7 +68,7 @@ export class TasksComponent implements OnInit {
     this.depService.getDepartments().subscribe(departmentList => this.departments = departmentList);
   }
   ngOnInit() {
-   this.getTasks();
+    this.getTasks();
     this.getEmployees();
     this.getDepartments();
   }
@@ -78,12 +81,12 @@ export class TasksComponent implements OnInit {
       id: newId,
       name: this.newTaskName,
       // priority: this.newPriority,
-      depId: this.newDepartment,
-      empId: this.newEmployee,
-      dueDate: null
+      department_id: this.newDepartment,
+      employees: this.newEmployee,
+      due_date: null
     };
     // this.tugas.push(newTask);
-    this.taskService.createNewTask(newTask);
+    this.tugas.push(newTask);
   }
   getDepartmentName(depId: number) {
     if (depId !== null) {
@@ -99,19 +102,19 @@ export class TasksComponent implements OnInit {
       return 'no employees assigned'; // return tempEmp.eame;
     }
   }
-  deleteTask(index: number) {
-    this.taskService.deleteTask(index);
-  }
-  updateTask(index: number, newName: string, newPriority: string) {
-    this.taskService.updateTask(index, newName, newPriority);
-  }
+  // deleteTask(index: number) {
+  //   this.taskService.deleteTask(index);
+  // }
+  // updateTask(index: number, newName: string, newPriority: string) {
+  //   this.taskService.updateTask(index, newName, newPriority);
+  // }
   searchTask() {
     // let nameRegex;
     this.searchTugas = [];
     for (let i = 0; i < this.tugas.length; i++) {
       // nameRegex = new RegExp(this.tugas[i].name , 'gi');
       // console.log(nameRegex);
-        // console.log(this.tugas[i].name + this.searchName.search(this.tugas[i].name));
+      // console.log(this.tugas[i].name + this.searchName.search(this.tugas[i].name));
       if (this.searchName.toLowerCase() === this.tugas[i].name.toLowerCase()) {
         this.searchTugas.push(this.tugas[i]);
       }
@@ -125,6 +128,21 @@ export class TasksComponent implements OnInit {
   //       this.tugas.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
   //   )
   //   formatter = (x: {name: string}) => x.name;
-
+  getTask(index: number) {
+    return this.tugas[index];
+  }
+  createNewTask(newTask: Task) {}
+  deleteTask(index: number) {
+    this.tugas.splice(index, 1);
+  }
+  updateTask() {
+    const index = this.selectedTask.id;
+    this.tugas[index].name = this.newTaskName;
+    this.tugas[index].due_date = this.newDate;
+    this.tugas[index].employees = this.newEmpList;
+    this.tugas[index].department_id = this.newDept;
+    // this.tugas[index].employees = newEmpList;
+    // this.tugas[index].priority = newPrio;
+  }
 
 }

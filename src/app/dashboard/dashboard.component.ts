@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   constructor(private taskService: TasksService, private empService: EmployeeService, private depService: DepartmentsService) {}
 
   getTasks(): void {
-    this.taskService.getTasks().subscribe(tugas => this.tugas = tugas);
+    this.taskService.getObservableTask().subscribe(tugas => this.tugas = tugas);
   }
   getEmployees(): void {
     this.empService.getEmployees().subscribe(employeeList => this.employeeList = employeeList);

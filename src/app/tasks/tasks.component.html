@@ -19,7 +19,7 @@
         <th>action</th>
       </thead>
 
-      <tr *ngFor="let tsk of tugas; index as i" (click)="onSelect(tsk)">
+      <tr *ngFor="let tsk of searchTugas; index as i" >
         <td>
           {{tsk.id}}
         </td>
@@ -136,7 +136,8 @@
             <div class="form-group"> -->
           <div class="form-group">
             <label for="selectedTaskName">Task Name</label>
-            <input class="form-control" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
+            <input class="form-control" type="hidden" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
+            <input class="form-control" type="text" [(ngModel)]="selectedTask.name" id="selectedTaskName" placeholder="name">
           </div>
           <div class="form-group">
             <label for="selectedTaskDepartment">Department Name</label>
@@ -150,7 +151,7 @@
             <label for="tanggal">Due Date</label>
             <!-- 1. inline datepicker -->
             <!-- 2. datepicker in the popup -->
-            <input type="text" [(ngModel)]="newDate" ngbDatepicker #d="ngbDatepicker" />
+            <input type="text" [(ngModel)]="selectedTask.due_date" ngbDatepicker #d="ngbDatepicker" />
             <button (click)="d.toggle()">Toggle</button>
           </div>
           <button class="btn btn-success" (click)="updateTask()">Edit</button>
