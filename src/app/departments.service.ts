@@ -30,33 +30,5 @@ export class DepartmentsService {
 
   }
 
-  addDepartment(dept: department): void {
-    departments.push(dept);
-  }
-
-  updateDepartment(dept: department, index: number): void {
-    departments[index].dept_name = dept.dept_name;
-  }
-
-  deleteDepartment(index: number): void {
-    departments.splice(index, 1);
-  }
-
-  getDepartmentById(i: number): Observable < department > {
-    for (let dept of departments) {
-      if (dept.id == i) {
-        return of(dept);
-      }
-    }
-    return null;
-  }
-
-  searchDepartment(key: string): Observable < department > {
-    for (let dept of departments) {
-      if (dept.dept_name == key) {
-        return of(dept);
-      }
-    }
-    return null;
-  }
+  
 }
