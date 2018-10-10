@@ -24,9 +24,11 @@ import {
 export class DepartmentsComponent implements OnInit {
   depts: department[];
   dept_name = null;
+  buildingName;
   selectedDept: department;
   i: number;
   emps: Employee[];
+  employeeList: number[];
   key = null;
   findDept: department;
 
@@ -37,13 +39,15 @@ export class DepartmentsComponent implements OnInit {
   }
 
   insert(): void {
-    const count = this.depts.length + 1;
+    const count = this.depts[this.depts.length - 1].id + 1;
     const dept: department = {
       id: count,
-      dept_name: this.dept_name
+      name: this.dept_name,
+      building: this.buildingName,
+      employees: this.employeeList
     };
-    // this.depts.push(dept);
-    this.departmentService.addDepartment(dept);
+    this.depts.push(dept);
+    // this.departmentService.addDepartment(dept);
   }
 
   show(dept: department, i: number): void {
@@ -51,16 +55,15 @@ export class DepartmentsComponent implements OnInit {
     this.i = i;
     this.getEmployees(dept.id);
   }
-
   update(index: number): void {
     // this.depts[index].dept_name = this.selectedDept.dept_name;
-    this.departmentService.updateDepartment(this.selectedDept, index);
-    this.selectedDept = null;
+    // this.departmentService.updateDepartment(this.selectedDept, index);
+    // this.selectedDept = null;
   }
-
   delete(index: number): void {
     if (index !== -1) {
-      this.departmentService.deleteDepartment(index);
+      // this.departmentService.deleteDepartment(index);
+      this.depts.splice(index, 1);
     }
   }
 
@@ -72,7 +75,33 @@ export class DepartmentsComponent implements OnInit {
     this.employeeService.getEmployeesByDept(i).subscribe(emps => this.emps = emps);
   }
 
-  search(): void {
-    this.departmentService.searchDepartment(this.key).subscribe(findDept => this.findDept = findDept);
+  // search(): void {
+  //   this.departmentService.searchDepartment(this.key).subscribe(findDept => this.findDept = findDept);
+  // }
+  // addDepartment(dept: department): void {    dept.push(dept);}
+
+  // updateDepartment(dept: department, index: number): void {
+  //   dept[index].dept_name = dept.name;
+  // }
+
+//   deleteDepartment(index: number): void {
+//  }
+
+  getDepartmentById(i: number): Observable < department > {
+    for (let dep of dept) {
+      if (dep.id == i) {
+        return of(dep);
+      }
+    }
+    return null;
+  }
+
+  searchDepartment(key: string): Observable < department > {
+    for (const dep of dept) {
+      if (dep.name === key) {
+        return of(dep);
+      }
+    }
+    return null;
   }
 }

@@ -52,7 +52,6 @@ export class DashboardComponent implements OnInit {
       this.closeResult = ``;
     });
   }
-  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return '';
@@ -77,42 +76,33 @@ export class DashboardComponent implements OnInit {
     this.selectedDept = null;
     this.selectedTask = oldTask;
     this.open(detail);
-    // this.modalService.open(detail, {
-    //   ariaLabelledBy: 'modal-detail'
-    // }).result.then((result) => {
-    //   this.closeResult = ``;
-    // }, (reason) => {
-    //   this.closeResult = ``;
-    // });
   }
   onSelectEmp(oldEmp: Employee, detail) {
     this.selectedDept = null;
     this.selectedTask = null;
     this.selectedEmp = oldEmp;
-    open(detail);
-
+    this.open(detail);
   }
   onSelectDept(oldDept: department, detail) {
     this.selectedTask = null;
     this.selectedEmp = null;
     this.selectedDept = oldDept;
-    open(detail);
-
+    this.open(detail);
   }
-  getDepartmentName(depId: number) {
-    if (depId !== null) {
-      return this.departments[depId - 1].dept_name;
-    } else {
-      return 'No Department assigned';
-    } // return tempEmp.eame;
-  }
-  getEmployeeName(empId: number) {
-    if (empId !== null) {
-      return this.employeeList[empId - 1].emp_name;
-    } else {
-      return 'no employees assigned'; // return tempEmp.eame;
-    }
-  }
+  // getDepartmentName(depId: number) {
+  //   if (depId !== null) {
+  //     return this.departments[depId - 1].dept_name;
+  //   } else {
+  //     return 'No Department assigned';
+  //   } // return tempEmp.eame;
+  // }
+  // getEmployeeName(empId: number) {
+  //   if (empId !== null) {
+  //     return this.employeeList[empId - 1].emp_name;
+  //   } else {
+  //     return 'no employees assigned'; // return tempEmp.eame;
+  //   }
+  // }
 
   ngOnInit() {
     this.getTasks();
