@@ -24,9 +24,11 @@ import {
 export class DepartmentsComponent implements OnInit {
   depts: department[];
   dept_name = null;
+  buildingName;
   selectedDept: department;
   i: number;
   emps: Employee[];
+  employeeList: number[];
   key = null;
   findDept: department;
 
@@ -37,10 +39,12 @@ export class DepartmentsComponent implements OnInit {
   }
 
   insert(): void {
-    const count = this.depts.length + 1;
+    const count = this.depts[this.depts.length - 1].id + 1;
     const dept: department = {
       id: count,
-      dept_name: this.dept_name
+      name: this.dept_name,
+      building: this.buildingName,
+      employees: this.employeeList
     };
     // this.depts.push(dept);
     this.departmentService.addDepartment(dept);

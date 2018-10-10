@@ -9,7 +9,7 @@
         <td>
           {{dept.id}}
         </td>
-        <td>{{dept.dept_name}} </td>
+        <td>{{dept.name}} </td>
       </tr>
     </tbody>
   </table>
@@ -18,7 +18,7 @@
       <th>ID</th>
       <th>Task</th>
     </thead>
-    <tr *ngFor="let tsk of tugas; index as i" (click)="onSelectTask(tsk,detail)">
+    <tr *ngFor="let tsk of tugas; let i = index" [attr.data-index]="i" (click)="onSelectTask(tsk,detail)">
       <td>
         {{tsk.id}}
       </td>
@@ -34,7 +34,7 @@
       <td>
         {{emp.id}}
       </td>
-      <td>{{emp.emp_name}} </td>
+      <td>{{emp.first_name}} </td>
     </tr>
   </table>
 </div>
@@ -50,11 +50,11 @@
   </div>
   <div class="modal-body">
     <div *ngIf="selectedTask">
-      <table class="col-md-6 table table-responsive">
+      <table class="col-md-6 table">
         <thead>
           <th>ID</th>
-          <th>Task</th>
-          <th>Priority</th>
+          <th>Task Name</th>
+          <!-- <th>Priority</th> -->
           <th>Department ID</th>
           <th>Employee</th>
           <th>Due Date</th>
@@ -65,46 +65,65 @@
             {{selectedTask.id}}
           </td>
           <td>{{selectedTask.name}} </td>
-          <td> {{selectedTask.priority}}</td>
-          <td> {{getDepartmentName(selectedTask.depId)}}</td>
-          <td> {{getEmployeeName(selectedTask.empId)}}</td>
-          <td> {{selectedTask.dueDate.toString()}}</td>
+          <td> {{selectedTask.department_id}}</td>
+          <!-- <td> {selectedTask.due_date}}</td> -->
+          <td>
+            <p *ngFor="let emp of selectedTask.employees">
+              {{emp}}
+            </p>
+          </td>
+          <td>
+            {{selectedTask.due_date.day}} -
+            {{selectedTask.due_date.month}} -
+            {{selectedTask.due_date.year}}
+
+          </td>
           <!-- <td><button class="btn btn-danger" (click)="deleteTask(i)">Delete</button></td> -->
         </tr>
       </table>
 
     </div>
     <div *ngIf="selectedEmp">
-      <table class="table">
+      <table class="col-md-6 table">
         <thead>
           <th>ID</th>
-          <th>Name</th>
-          <th>Address</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Department Id</th>
+          <!-- <th>Address</th> -->
         </thead>
-
         <tr>
           <td>
             {{selectedEmp.id}}
           </td>
-          <td>{{selectedEmp.emp_name}} </td>
-          <td> {{selectedEmp.emp_address}}</td>
+          <td>{{selectedEmp.first_name}} </td>
+          <td>{{selectedEmp.last_name}} </td>
+          <td> {{selectedEmp.department_id}}</td>
         </tr>
-
       </table>
-
     </div>
     <div *ngIf="selectedDept">
       <table class="col-md-6 table">
         <thead>
           <th>ID</th>
           <th>Name</th>
+          <th>Building</th>
+          <th>Employees</th>
         </thead>
         <tr>
           <td>
             {{selectedDept.id}}
           </td>
-          <td>{{selectedDept.dept_name}} </td>
+          <td>{{selectedDept.name}} </td>
+          <td>{{selectedDept.building}} </td>
+          <td>
+            <p *ngFor="let emp of selectedDept.employees">
+              {{emp}}
+            </p>
+          </td>
+
         </tr>
+
       </table>
 
     </div>
